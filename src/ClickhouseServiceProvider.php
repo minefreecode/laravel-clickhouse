@@ -25,12 +25,16 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Регистрация сервисов  проекта
+ */
 final class ClickhouseServiceProvider extends ServiceProvider
 {
     private const CONFIG_FILE_PATH = __DIR__ . '/../config/clickhouse.php';
 
     public function register(): void
     {
+        //Регистрация клиента
         $this->app->singleton(
             ClickhouseClient::class,
             static function (Application $app): ClickhouseClient {
@@ -43,6 +47,7 @@ final class ClickhouseServiceProvider extends ServiceProvider
             },
         );
 
+        //Регистрация мигратора
         $this->app->singleton(
             Migrator::class,
             static function (Application $app): Migrator {
@@ -64,6 +69,7 @@ final class ClickhouseServiceProvider extends ServiceProvider
             },
         );
 
+        //Создатель
         $this->app->singleton(
             MigrationCreator::class,
             static function (Application $app): MigrationCreator {

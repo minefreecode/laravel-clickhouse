@@ -25,10 +25,23 @@ use Symfony\Component\Finder\SplFileInfo;
 
 use function in_array;
 
+/**
+ * Мигратор
+ */
 final class Migrator
 {
+    /**
+     * @var Client Клиент
+     */
     private Client $client;
+    /**
+     * @var MigrationRepository Репозиторий
+     */
     private MigrationRepository $repository;
+
+    /**
+     * @var Filesystem Файловая система
+     */
     private Filesystem $filesystem;
 
     public function __construct(
@@ -49,7 +62,7 @@ final class Migrator
         OutputStyle $output,
         int $step
     ): void {
-        $migrations = $this->getMigrationsUp($migrationsDirectoryPath);
+        $migrations = $this->getMigrationsUp($migrationsDirectoryPath); //Получить все миграции для поднятия
 
         if ($migrations->valid() === false) {
             $output->writeln(
@@ -67,7 +80,7 @@ final class Migrator
             $startTime = microtime(true);
 
             $migration = $this->resolveMigrationInstance($migrations->current());
-            $migration->up();
+            $migration->up();//Поднять миграции
 
             $runTime = round(microtime(true) - $startTime, 2);
 
@@ -92,6 +105,12 @@ final class Migrator
         return $this;
     }
 
+    /**
+     * Получить все неподнятые миграции
+     *
+     * @param string $migrationsDirectoryPath
+     * @return Generator
+     */
     private function getMigrationsUp(
         string $migrationsDirectoryPath
     ): Generator {
@@ -165,8 +184,8 @@ final class Migrator
         string $fileName
     ): bool {
         return in_array(
-            $this->getMigrationName($fileName),
-            $this->repository->all(),
+            $this->getMigrationName($fileName), //Имя миграции для сравнения
+            $this->repository->all(), //Массив имен всех миграций из Clickhouse
             true,
         );
     }

@@ -1,5 +1,6 @@
 version: "3.9"
 services:
+  # Контейнер для 7.4 версии PHP
   php74:
     container_name: laravel-clickhouse-lib-74
     image: laravel-clickhouse-lib-74
@@ -10,7 +11,7 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
-
+# Контейнер для 8.2 версии PHP
   php82:
     container_name: laravel-clickhouse-lib-82
     image: laravel-clickhouse-lib-82
@@ -21,7 +22,7 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
-
+# Контейнер для Laravel версии 8.3
   php83:
     container_name: laravel-clickhouse-lib-83
     image: laravel-clickhouse-lib-83
@@ -44,6 +45,7 @@ services:
     volumes:
       - ./:/app
 
+# Контейнер  с Clickhouse
   clickhouse:
     container_name: laravel-clickhouse-clickhouse
     image: yandex/clickhouse-server:21.8-alpine

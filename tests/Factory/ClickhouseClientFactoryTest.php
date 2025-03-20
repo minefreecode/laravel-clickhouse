@@ -22,6 +22,7 @@ final class ClickhouseClientFactoryTest extends AbstractTestCase
 {
     public function testInitializationWithMainConfig(): void
     {
+        //Получение клиента Clickhouse
         $clickhouse = new ClickhouseClientFactory(
             [
                 'host' => 'example.com',

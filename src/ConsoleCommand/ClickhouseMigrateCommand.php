@@ -38,6 +38,10 @@ final class ClickhouseMigrateCommand extends Command
      */
     protected $description = 'Run the ClickHouse database migrations';
 
+    /**
+     * @param Migrator $migrator
+     * @return Мигрировать
+     */
     public function handle(
         Migrator $migrator
     ): int {

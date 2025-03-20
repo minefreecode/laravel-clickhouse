@@ -22,7 +22,7 @@ return [
     | database and specify additional configuration options.
     |
     */
-
+    //Настройки подключения к БД
     'connection' => [
         'host' => env('CLICKHOUSE_HOST', 'localhost'),
         'port' => env('CLICKHOUSE_PORT', 8123),
@@ -41,6 +41,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
+    //Ссылка на таблицу миграции и путь к файлам миграций
     'migrations' => [
         'table' => env('CLICKHOUSE_MIGRATION_TABLE', 'migrations'),
         'path' => database_path('clickhouse-migrations'),

@@ -22,6 +22,8 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
+//Помечаем команду в симфонийском стиле аттрибутами
+//Это команда для создания новой миграции
 #[AsCommand(name: 'make:clickhouse-migration')]
 final class MakeClickhouseMigrationCommand extends Command
 {

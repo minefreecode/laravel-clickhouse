@@ -16,6 +16,9 @@ namespace Cog\Laravel\Clickhouse\Factory;
 use ClickHouseDB\Client;
 use Cog\Laravel\Clickhouse\Exception\ClickhouseConfigException;
 
+/**
+ * Фабрика для создания клиентов Clickhouse
+ */
 final class ClickhouseClientFactory
 {
     private array $defaultConfig;

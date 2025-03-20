@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Cog\Laravel\Clickhouse\Migration\AbstractClickhouseMigration;
-
+# Базовый шаблон для создания миграций
 return new class extends AbstractClickhouseMigration
 {
     public function up(): void

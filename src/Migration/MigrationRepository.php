@@ -30,7 +30,7 @@ final class MigrationRepository
     }
 
     /**
-     * Creating a new table to store migrations.
+     * Если таблицы не существует создаем
      */
     public function createMigrationRegistryTable(): Statement
     {
@@ -41,24 +41,25 @@ final class MigrationRepository
                 batch UInt32,
                 applied_at DateTime DEFAULT NOW()
             )
-            ENGINE = ReplacingMergeTree()
-            ORDER BY migration
-            SQL,
+            ENGINE = ReplacingMergeTree() # Движок
+            ORDER BY migration # Сортировка
+            SQL, # SQL
             [
-                'table' => $this->table,
+                'table' => $this->table, # Имя таблицы
             ],
         );
     }
 
     /**
+     * Получить абсолютно все миграции из БД
      * @return array
      */
     public function all(): array
     {
         $rows = $this->client->select(
             <<<SQL
-            SELECT migration
-            FROM {table}
+            SELECT migration # Получить миграции
+            FROM {table} # Из таблицы миграций
             SQL,
             [
                 'table' => $this->table,
